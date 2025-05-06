@@ -2,24 +2,29 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 from django.db import models
 
 class Guia(models.Model):
-    id = models.IntegerField(primary_key=True)
     trackingNumber = models.CharField(max_length=15)
     origin = models.CharField(max_length=100)
     destination = models.CharField(max_length=100)
+    recipient = models.CharField(max_length=100, default='TBD')
     createdAt = models.DateField(auto_created=True, auto_now=True)
     updatedAt = models.DateField(auto_created=True, auto_now=True)
     currentStatus = models.CharField(max_length=20)
+    def __str__ (self):
+        return self.trackingNumber    
     class Meta:
         db_table = 'Guide'
 
 class Estatus(models.Model):
-    id = models.IntegerField(primary_key=True)
     status = models.CharField(max_length=20)
     timestamp = models.DateTimeField(auto_created=True, auto_now=True)
     updatedBy = models.CharField(max_length=20)
     guide = models.ForeignKey(Guia, on_delete=models.CASCADE)
+    def __str__ (self):
+        return self.status
     class Meta:
         db_table = 'StatusHistory'
+        verbose_name = 'Estatus'
+        verbose_name_plural = 'Estatuses'
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
@@ -47,7 +52,7 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     objects = CustomUserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['nombre']
+    REQUIRED_FIELDS = ['name']
 
     def __str__(self):
         return self.email
