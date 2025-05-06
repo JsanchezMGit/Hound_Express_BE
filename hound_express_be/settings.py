@@ -1,5 +1,3 @@
-from dotenv import load_dotenv
-load_dotenv()
 """
 Django settings for hound_express_be project.
 
@@ -29,11 +27,9 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     "eabac.azurewebsites.net",
-    ".azurewebsites.net",
     "localhost",
     "127.0.0.1"
 ]
-
 CSRF_TRUSTED_ORIGINS = [
     "https://eabac.azurewebsites.net",
     "http://localhost:5173",
@@ -45,6 +41,7 @@ CORS_ALLOWED_ORIGINS = [
     "https://jsanchezmgit.github.io"
 ]
 CORS_ALLOW_CREDENTIALS = True
+
 
 # Application definition
 
@@ -94,16 +91,10 @@ WSGI_APPLICATION = "hound_express_be.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-import os
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME'),
-        'USER': os.getenv('DB_USER'),
-        'PASSWORD': os.getenv('DB_PASSWORD'),
-        'HOST': os.getenv('DB_HOST'),
-        'PORT': os.getenv('DB_PORT', '5432'),
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
 
@@ -142,8 +133,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_URL = "static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -151,29 +141,9 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "api.Usuario"
-
+SECURE_SSL_REDIRECT = True
 SECURE_HSTS_SECONDS = 30 * 24 * 60 * 60
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
-SECURE_SSL_REDIRECT = False
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
-SECURE_BROWSER_XSS_FILTER = True
-SECURE_CONTENT_TYPE_NOSNIFF = True
-X_FRAME_OPTIONS = "DENY"
-SESSION_COOKIE_HTTPONLY = True
-SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO', 'https")
-
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-        },
-    },
-    'root': {
-        'handlers': ['console'],
-        'level': 'WARNING',
-    },
-}
