@@ -25,13 +25,10 @@ SECRET_KEY = "PsJblms8`1234567890-=django-insecure-#u9sb)a2smz+1vnlbslmk)%6hdy)f
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [
-    ".azurewebsites.net",
-    "localhost",
-    "127.0.0.1"
-]
+import os
+ALLOWED_HOSTS = [os.environ.get('RENDER_EXTERNAL_HOSTNAME', 'localhost')]
+
 CSRF_TRUSTED_ORIGINS = [
-    "https://eabac.azurewebsites.net",
     "http://localhost:5173",
     "https://jsanchezmgit.github.io"
 ]
