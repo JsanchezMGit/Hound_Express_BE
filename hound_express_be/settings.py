@@ -29,14 +29,14 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     "eabac.azurewebsites.net",
-    ".azurewebsites.net"
-    "localhost"
+    ".azurewebsites.net",
+    "localhost",
     "127.0.0.1"
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "https://eabac.azurewebsites.net",
-    "http://localhost:5173"
+    "http://localhost:5173",
     "https://jsanchezmgit.github.io"
 ]
 
@@ -142,7 +142,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -154,13 +155,14 @@ AUTH_USER_MODEL = "api.Usuario"
 SECURE_HSTS_SECONDS = 30 * 24 * 60 * 60
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
-SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = False
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
-X_FRAME_OPTIONS = 'DENY'
+X_FRAME_OPTIONS = "DENY"
 SESSION_COOKIE_HTTPONLY = True
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO', 'https")
 
 LOGGING = {
     'version': 1,
