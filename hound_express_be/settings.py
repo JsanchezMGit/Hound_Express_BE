@@ -26,7 +26,7 @@ SECRET_KEY = "PsJblms8`1234567890-=django-insecure-#u9sb)a2smz+1vnlbslmk)%6hdy)f
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    "eabac.azurewebsites.net",
+    ".azurewebsites.net",
     "localhost",
     "127.0.0.1"
 ]
