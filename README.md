@@ -17,6 +17,7 @@ Backend para el sistema de rastreo de paquetes "Mi perro veloz". Procesa datos d
 1. Clonar repositorio:
    ```bash
    git clone https://github.com/JsanchezMGit/Mi_Perro_Veloz_BE.git
+   cd Mi_Perro_Veloz_BE
    python manage.py runserver  
 
 ## 📄 Licencia
